@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Makes You Happy Survey - Enhanced Analysis Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           RESET & GLOBAL STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.15);
+            overflow: hidden;
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+           ======================================== */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 4px solid #667eea;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        /* ========================================
+           RESEARCH HIGHLIGHTS
+           ======================================== */
+        .highlights {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .highlight-card h3 {
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .highlight-card .value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #764ba2;
+            margin-bottom: 5px;
+        }
+
+        .highlight-card p {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
+
+        /* ========================================
+           MAIN CONTENT
+           ======================================== */
+        main {
+            padding: 50px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #ecf0f1;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.1);
+        }
+
+        section:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+        h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #764ba2;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        h2:hover {
+            color: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #2c3e50;
+        }
+
+        /* ========================================
+           SUBSECTIONS & CONTAINERS
+           ======================================== */
+        .subsection {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border-left: 4px solid #667eea;
+            position: relative;
+        }
+
+        .subsection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .subsection h3 {
+            margin-top: 0;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f5ecff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+
+        .key-findings {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3e0 100%);
+            padding: 24px;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+            margin: 20px 0;
+        }
+
+        .key-findings h4 {
+            color: #d68910;
+            margin-top: 0;
+        }
+
+        /* ========================================
+           STAT CARDS & METRICS
+           ======================================== */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .stat-card:hover {
+            border-color: #ecf0f1;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 0.8em;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card.secondary {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .stat-card.info {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* ========================================
+           RANKED ATTRIBUTES
+           ======================================== */
+        .ranked-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .ranked-item {
+            background: linear-gradient(90deg, #667eea15 0%, #764ba215 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .ranked-item:hover {
+            background: linear-gradient(90deg, #667eea25 0%, #764ba225 100%);
+            transform: translateX(8px);
+        }
+
+        .rank-number {
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .ranked-item.medium .rank-number {
+            background: #f39c12;
+        }
+
+        .ranked-item.low .rank-number {
+            background: #27ae60;
+        }
+
+        .rank-content h4 {
+            margin: 0 0 5px 0;
+        }
+
+        .rank-content p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        /* ========================================
+           BADGES & TAGS
+           ======================================== */
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge.high {
+            background: #e74c3c;
+        }
+
+        .badge.medium {
+            background: #f39c12;
+        }
+
+        .badge.low {
+            background: #27ae60;
+        }
+
+        /* ========================================
+           PERSONA CARDS
+           ======================================== */
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .persona-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .persona-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .persona-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .persona-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.4em;
+        }
+
+        .persona-body {
+            padding: 25px;
+        }
+
+        .persona-trait {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .persona-trait:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .trait-label {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 5px;
+        }
+
+        .trait-value {
+            color: #2c3e50;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           COMPARISON TABLES
+           ======================================== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            color: #2c3e50;
+        }
+
+        tbody tr:hover {
+            background: #f8f9fa;
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #fafbfc;
+        }
+
+        /* ========================================
+           DISTRIBUTION GRID
+           ======================================== */
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .distribution-item {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border: 2px solid #ecf0f1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .distribution-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+        }
+
+        .distribution-label {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        .distribution-value {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+
+        .distribution-description {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+
+        /* ========================================
+           LISTS
+           ======================================== */
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 40px;
+            border-top: 4px solid #667eea;
+        }
+
+        footer p {
+            color: #ecf0f1;
+            margin-bottom: 8px;
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN (Flexibility)
+           ======================================== */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            main {
+                padding: 30px 20px;
+            }
+
+            section {
+                padding: 25px 20px;
+            }
+
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ========================================
+           SCROLL-TO-TOP BUTTON
+           ======================================== */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: #667eea;
+            color: white;
+            cursor: pointer;
+            padding: 15px 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #764ba2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.5);
+        }
+
+        /* ========================================
+           SECTION HIGHLIGHTING
+           ======================================== */
+        section.highlight {
+            animation: highlightPulse 1.5s ease-out;
+        }
+
+        @keyframes highlightPulse {
+            0% {
+                box-shadow: 0 0 0 rgba(102, 126, 234, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            }
+            100% {
+                box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>What Makes You Happy?</h1>
+            <p style="color: white;">Comprehensive Survey Analysis on Sources of Happiness and Well-being</p>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <a href="#overview" class="active">Overview</a>
+            <a href="#distributions">Distributions</a>
+            <a href="#emotions">Emotion Analysis</a>
+            <a href="#demographics">Demographics</a>
+            <a href="#perma">PERMA Framework</a>
+            <a href="#personas">Personas</a>
+            <a href="#insights">Insights</a>
+        </nav>
+
+        <!-- HIGHLIGHTS SECTION -->
+        <div class="highlights">
+            <div class="highlight-card">
+                <h3>Total Responses</h3>
+                <div class="value">318</div>
+                <p>Survey participants analyzed across multiple dimensions</p>
+            </div>
+            <div class="highlight-card">
+                <h3>Primary Category</h3>
+                <div class="value">Growth</div>
+                <p>Self-Development is the most frequent happiness source</p>
+            </div>
+            <div class="highlight-card">
+                <h3>High Intensity</h3>
+                <div class="value">70.8%</div>
+                <p>Percentage of high-intensity emotional responses</p>
+            </div>
+            <div class="highlight-card">
+                <h3>Top PERMA</h3>
+                <div class="value">Accomplish</div>
+                <p>Accomplishment leads well-being components</p>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- OVERVIEW SECTION -->
+            <section id="overview">
+                <h2>Research Overview</h2>
+                <p>This comprehensive analysis explores the diverse sources of happiness among survey respondents. By examining responses across emotion categories, intensity levels, and demographic dimensions, we identify patterns that reveal what truly makes people happy. The research integrates psychological frameworks including Seligman's PERMA model and emotion intensity analysis to provide a holistic understanding of well-being drivers.</p>
+                
+                <div class="key-findings">
+                    <h4>Study Scope</h4>
+                    <ul>
+                        <li>318 total survey responses analyzed</li>
+                        <li>236 male respondents (74.2%) and 80 female respondents (25.2%)</li>
+                        <li>Mix of undergraduate and postgraduate participants</li>
+                        <li>Three primary emotion categories identified</li>
+                        <li>Five PERMA well-being components mapped</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- METHODOLOGY SECTION -->
+            <section>
+                <h2>Methodology & Data Processing</h2>
+                <p>This analysis employed rigorous data processing and categorization techniques:</p>
+                
+                <h3>Data Cleaning & Preparation</h3>
+                <ul>
+                    <li>Column names standardized and cleaned for analysis</li>
+                    <li>Missing or inconsistent values handled appropriately</li>
+                    <li>Text responses normalized and categorized</li>
+                    <li>Demographic fields extracted and coded</li>
+                </ul>
+
+                <h3>Categorization Framework</h3>
+                <ul>
+                    <li><strong>Emotion Categories:</strong> Three primary categories identified through iterative coding of happiness factors</li>
+                    <li><strong>Intensity Mapping:</strong> Confidence scores assigned based on psychological literature on emotional arousal</li>
+                    <li><strong>PERMA Classification:</strong> Responses mapped to Seligman's well-being model</li>
+                    <li><strong>Persona Identification:</strong> Distinct profiles synthesized from distribution patterns and statistical relationships</li>
+                </ul>
+
+                <h3>Analysis Techniques</h3>
+                <ul>
+                    <li>Descriptive statistics and frequency distributions</li>
+                    <li>Cross-tabulation analysis for demographic patterns</li>
+                    <li>Proportional analysis accounting for sample size imbalances</li>
+                    <li>Heatmap visualization of multi-dimensional relationships</li>
+                    <li>Average confidence score calculation by demographic groups</li>
+                </ul>
+            </section>
+
+            <!-- EMOTION DISTRIBUTION SECTION -->
+            <section id="distributions">
+                <h2>Happiness Source Distributions</h2>
+                
+                <h3>Primary Emotion Categories</h3>
+                <p>The analysis reveals three distinct categories of happiness sources, ranked by frequency of response:</p>
+
+                <!-- SVG Chart: Emotion Categories Distribution -->
+                <div style="display: flex; justify-content: center; margin: 40px 0;">
+                    <svg viewBox="0 0 900 500" style="width: 100%; max-width: 900px; height: auto; border-radius: 8px; background: #f8f9fa; padding: 30px;">
+                        <!-- Title -->
+                        <text x="450" y="35" font-size="20" font-weight="bold" text-anchor="middle" fill="#667eea">Emotion Category Distribution</text>
+                        
+                        <!-- Y-Axis -->
+                        <line x1="80" y1="60" x2="80" y2="400" stroke="#ccc" stroke-width="2"/>
+                        <!-- X-Axis -->
+                        <line x1="80" y1="400" x2="850" y2="400" stroke="#ccc" stroke-width="2"/>
+                        
+                        <!-- Y-Axis Labels -->
+                        <text x="70" y="410" font-size="12" text-anchor="end" fill="#666">0</text>
+                        <text x="70" y="313" font-size="12" text-anchor="end" fill="#666">50</text>
+                        <text x="70" y="217" font-size="12" text-anchor="end" fill="#666">100</text>
+                        <text x="70" y="121" font-size="12" text-anchor="end" fill="#666">150</text>
+                        
+                        <!-- Grid Lines -->
+                        <line x1="80" y1="307" x2="850" y2="307" stroke="#eee" stroke-width="1"/>
+                        <line x1="80" y1="211" x2="850" y2="211" stroke="#eee" stroke-width="1"/>
+                        <line x1="80" y1="115" x2="850" y2="115" stroke="#eee" stroke-width="1"/>
+                        
+                        <!-- Bars with increased width and height -->
+                        <!-- Growth (144) -->
+                        <rect x="150" y="80" width="160" height="320" fill="#667eea" opacity="0.85" rx="8"/>
+                        <text x="230" y="425" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Growth</text>
+                        <text x="230" y="55" font-size="16" font-weight="bold" text-anchor="middle" fill="#667eea">144</text>
+                        <text x="230" y="240" font-size="16" font-weight="bold" text-anchor="middle" fill="white">45.3%</text>
+                        
+                        <!-- Social (103) -->
+                        <rect x="380" y="169" width="160" height="231" fill="#764ba2" opacity="0.85" rx="8"/>
+                        <text x="460" y="425" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Social</text>
+                        <text x="460" y="155" font-size="16" font-weight="bold" text-anchor="middle" fill="#764ba2">103</text>
+                        <text x="460" y="290" font-size="16" font-weight="bold" text-anchor="middle" fill="white">32.4%</text>
+                        
+                        <!-- Calm (69) -->
+                        <rect x="610" y="297" width="160" height="103" fill="#f39c12" opacity="0.85" rx="8"/>
+                        <text x="690" y="425" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Calm</text>
+                        <text x="690" y="280" font-size="16" font-weight="bold" text-anchor="middle" fill="#f39c12">69</text>
+                        <text x="690" y="350" font-size="16" font-weight="bold" text-anchor="middle" fill="white">21.7%</text>
+                        
+                        <!-- Axis Labels -->
+                        <text x="465" y="460" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600">Emotion Category</text>
+                        <text x="20" y="230" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600" transform="rotate(-90 20 230)">Number of Responses</text>
+                    </svg>
+                </div>
+                
+                <div class="ranked-list">
+                    <div class="ranked-item">
+                        <div class="rank-number">1</div>
+                        <div class="rank-content">
+                            <h4>Growth / Self-Development</h4>
+                            <p>144 responses (45.3%) - Achievement and personal development are the most frequently cited sources of happiness, including achievements, exercise, and skill acquisition.</p>
+                        </div>
+                    </div>
+                    <div class="ranked-item">
+                        <div class="rank-number">2</div>
+                        <div class="rank-content">
+                            <h4>Relational / Social</h4>
+                            <p>103 responses (32.4%) - Strong social connections, bonding with others, and affection create significant happiness sources for respondents.</p>
+                        </div>
+                    </div>
+                    <div class="ranked-item low">
+                        <div class="rank-number">3</div>
+                        <div class="rank-content">
+                            <h4>Calm / Presence / Restoration</h4>
+                            <p>69 responses (21.7%) - Tranquility, nature connection, and leisure activities contribute to happiness, though less frequently cited.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Happiness Source Intensity Distribution</h3>
+                <p>Respondents predominantly experience happiness through high-intensity emotional events:</p>
+
+                <!-- SVG Pie Chart: Emotion Intensity Distribution -->
+                <div style="display: flex; justify-content: center; margin: 40px 0;">
+                    <svg viewBox="0 0 800 800" style="width: 100%; max-width: 800px; height: 800px; border-radius: 8px; background: #f8f9fa; padding: 30px;">
+                        <!-- Title -->
+                        <text x="400" y="35" font-size="24" font-weight="bold" text-anchor="middle" fill="#667eea">Emotion Intensity Distribution</text>
+                        
+                        <!-- Outer ring for visual separation -->
+                        <circle cx="400" cy="400" r="180" fill="none" stroke="#e8e8e8" stroke-width="1" opacity="0.5"/>
+                        
+                        <!-- High Intensity Slice (70.8% = 255°) starts at top, goes 255 degrees clockwise -->
+                        <path d="M 400 220 A 180 180 0 1 1 226.14 446.58 L 400 400 Z" fill="#e74c3c" stroke="white" stroke-width="3"/>
+                        
+                        <!-- Low Intensity Slice (22.0% = 79.2°) continues for 79.2 degrees -->
+                        <path d="M 226.14 446.58 A 180 180 0 0 1 326.8 235.6 L 400 400 Z" fill="#27ae60" stroke="white" stroke-width="3"/>
+                        
+                        <!-- Medium Intensity Slice (7.2% = 25.92°) completes the circle -->
+                        <path d="M 326.8 235.6 A 180 180 0 0 1 400 220 L 400 400 Z" fill="#f39c12" stroke="white" stroke-width="3"/>
+                        
+                        <!-- Center circle for donut effect -->
+                        <circle cx="400" cy="400" r="110" fill="white" stroke="none"/>
+                        
+                        <!-- Center content -->
+                        <text x="400" y="395" font-size="36" font-weight="bold" text-anchor="middle" fill="#667eea">318</text>
+                        <text x="400" y="425" font-size="16" text-anchor="middle" fill="#666" font-weight="600">Total Responses</text>
+                        
+                        <!-- High Intensity Label (Red - lower right, center of red slice) -->
+                        <circle cx="570" cy="520" r="12" fill="#e74c3c" opacity="0.8"/>
+                        <text x="600" y="515" font-size="16" font-weight="bold" fill="#2c3e50">70.8%</text>
+                        <text x="600" y="535" font-size="13" fill="#555">High Intensity</text>
+                        <text x="600" y="552" font-size="12" fill="#777">224 responses</text>
+                        
+                        <!-- Low Intensity Label (Green - left side, center of green slice) -->
+                        <circle cx="200" cy="310" r="12" fill="#27ae60" opacity="0.8"/>
+                        <text x="50" y="305" font-size="16" font-weight="bold" fill="#2c3e50">22.0%</text>
+                        <text x="50" y="325" font-size="13" fill="#555">Low Intensity</text>
+                        <text x="50" y="342" font-size="12" fill="#777">70 responses</text>
+                        
+                        <!-- Medium Intensity Label (Orange - top center, center of orange slice) -->
+                        <circle cx="377" cy="150" r="12" fill="#f39c12" opacity="0.8"/>
+                        <text x="407" y="145" font-size="16" font-weight="bold" fill="#2c3e50">7.2%</text>
+                        <text x="407" y="165" font-size="13" fill="#555">Medium Intensity</text>
+                        <text x="407" y="182" font-size="12" fill="#777">23 responses</text>
+                    </svg>
+                </div>
+                
+                <div class="distribution-grid">
+                    <div class="distribution-item">
+                        <div class="distribution-label">High Intensity</div>
+                        <div class="distribution-value">70.8%</div>
+                        <div class="distribution-description">Growth & Social experiences evoke strong, impactful emotions</div>
+                    </div>
+                    <div class="distribution-item">
+                        <div class="distribution-label">Low Intensity</div>
+                        <div class="distribution-value">22.0%</div>
+                        <div class="distribution-description">Calm & Restoration provide peaceful, restorative emotions</div>
+                    </div>
+                    <div class="distribution-item">
+                        <div class="distribution-label">Medium Intensity</div>
+                        <div class="distribution-value">7.2%</div>
+                        <div class="distribution-description">Engagement provides balanced emotional experiences</div>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> The overwhelming prevalence of high-intensity happiness experiences (70.8%) suggests that respondents find their most profound fulfillment in impactful, engaging activities rather than purely passive or low-arousal states.
+                </div>
+            </section>
+
+            <!-- EMOTION ANALYSIS SECTION -->
+            <section id="emotions">
+                <h2>Emotion Category Analysis</h2>
+                
+                <h3>Cross-Dimensional Analysis</h3>
+                <p>By examining the relationships between emotion categories, intensity levels, and demographic factors, we observe distinct patterns in happiness expression:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Emotion Category</th>
+                            <th>Response Count</th>
+                            <th>Primary Intensity</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Growth / Self-Development</strong></td>
+                            <td>144</td>
+                            <td><span class="badge high">High (3.0)</span></td>
+                            <td>45.3%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relational / Social</strong></td>
+                            <td>103</td>
+                            <td><span class="badge high">High (3.0)</span></td>
+                            <td>32.4%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calm / Presence / Restoration</strong></td>
+                            <td>69</td>
+                            <td><span class="badge low">Low (1.0)</span></td>
+                            <td>21.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Intensity-Based Insights</h3>
+                <ul>
+                    <li><strong>High Intensity (Score 3.0):</strong> Strongly associated with 'Growth / Self-Development' (e.g., Achievement, 122 responses) and 'Relational / Social' (e.g., Affection, Bonding, 103 responses). These represent the most impactful happiness experiences.</li>
+                    <li><strong>Low Intensity (Score 1.0):</strong> Exclusively linked to 'Calm / Presence / Restoration' experiences like nature appreciation and leisure (69 responses). These provide steady, peaceful contentment.</li>
+                    <li><strong>Medium Intensity (Score 2.0):</strong> Limited responses (24 total), mainly from Exercise and Enjoying the Moment, representing balanced emotional engagement.</li>
+                </ul>
+
+                <div class="key-findings">
+                    <h4>Emotional Culture Finding</h4>
+                    <p>The data suggests a culture that highly values concrete achievements and robust social connections as primary avenues for experiencing intense happiness. While calm experiences contribute, they are viewed as secondary or subtle well-being contributors in this context.</p>
+                </div>
+            </section>
+
+            <!-- DEMOGRAPHIC ANALYSIS SECTION -->
+            <section id="demographics">
+                <h2>Demographic Insights</h2>
+
+                <h3>Gender-Based Happiness Patterns</h3>
+                <p>While males represent 74.2% of responses (236) and females 25.2% (80), proportional analysis reveals nuanced gender differences:</p>
+
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="value">48.3%</div>
+                        <div class="label">Male Growth-Oriented</div>
+                    </div>
+                    <div class="stat-card secondary">
+                        <div class="value">37.5%</div>
+                        <div class="label">Female Growth-Oriented</div>
+                    </div>
+                    <div class="stat-card info">
+                        <div class="value">2.525</div>
+                        <div class="label">Male Avg. Confidence Score</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="value">2.388</div>
+                        <div class="label">Female Avg. Confidence Score</div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Key Gender Findings</h3>
+                    <ul>
+                        <li><strong>Growth Preference:</strong> Males show proportionally higher preference for 'Growth-Oriented' happiness (48.3%) compared to females (37.5%)</li>
+                        <li><strong>Relational Balance:</strong> Females show marginally higher preference for 'Bonding-Oriented' (33.75% vs 32.2% for males)</li>
+                        <li><strong>Calm Appreciation:</strong> Females proportionally value 'Calm' experiences more (28.75% vs 19.5% for males)</li>
+                        <li><strong>Intensity Levels:</strong> Males report slightly higher average confidence scores, indicating preference for higher-intensity emotions</li>
+                    </ul>
+                </div>
+
+                <h3>Academic Level Analysis</h3>
+                <p>Undergraduate and postgraduate students show similar but distinct patterns:</p>
+
+                <!-- SVG Chart: Confidence Score by Academic Level -->
+                <div style="display: flex; justify-content: center; margin: 40px 0;">
+                    <svg viewBox="0 0 800 500" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; background: #f8f9fa; padding: 30px;">
+                        <!-- Title -->
+                        <text x="400" y="40" font-size="22" font-weight="bold" text-anchor="middle" fill="#667eea">Average Confidence Score by Academic Level</text>
+                        
+                        <!-- Y-Axis -->
+                        <line x1="100" y1="70" x2="100" y2="380" stroke="#ccc" stroke-width="2"/>
+                        <!-- X-Axis -->
+                        <line x1="100" y1="380" x2="750" y2="380" stroke="#ccc" stroke-width="2"/>
+                        
+                        <!-- Y-Axis Labels -->
+                        <text x="90" y="390" font-size="12" text-anchor="end" fill="#666">0.0</text>
+                        <text x="90" y="309" font-size="12" text-anchor="end" fill="#666">1.0</text>
+                        <text x="90" y="228" font-size="12" text-anchor="end" fill="#666">2.0</text>
+                        <text x="90" y="147" font-size="12" text-anchor="end" fill="#666">3.0</text>
+                        
+                        <!-- Grid Lines -->
+                        <line x1="100" y1="300" x2="750" y2="300" stroke="#eee" stroke-width="1"/>
+                        <line x1="100" y1="219" x2="750" y2="219" stroke="#eee" stroke-width="1"/>
+                        <line x1="100" y1="138" x2="750" y2="138" stroke="#eee" stroke-width="1"/>
+                        
+                        <!-- Undergraduate Bar (2.498) -->
+                        <rect x="200" y="128" width="180" height="252" fill="#667eea" opacity="0.85" rx="8"/>
+                        <text x="290" y="420" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Undergraduate</text>
+                        <text x="290" y="105" font-size="18" font-weight="bold" text-anchor="middle" fill="#667eea">2.50</text>
+                        <text x="290" y="265" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Avg Score</text>
+                        
+                        <!-- Postgraduate Bar (2.443) -->
+                        <rect x="500" y="145" width="180" height="235" fill="#764ba2" opacity="0.85" rx="8"/>
+                        <text x="590" y="420" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Postgraduate</text>
+                        <text x="590" y="122" font-size="18" font-weight="bold" text-anchor="middle" fill="#764ba2">2.44</text>
+                        <text x="590" y="265" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Avg Score</text>
+                        
+                        <!-- Axis Labels -->
+                        <text x="425" y="460" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600">Academic Level</text>
+                        <text x="40" y="225" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600" transform="rotate(-90 40 225)">Confidence Score</text>
+                    </svg>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Level</th>
+                            <th>Sample Size</th>
+                            <th>Avg. Confidence Score</th>
+                            <th>Primary Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Undergraduate</strong></td>
+                            <td>~50%</td>
+                            <td>2.498</td>
+                            <td>Growth-Oriented</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Postgraduate</strong></td>
+                            <td>~50%</td>
+                            <td>2.443</td>
+                            <td>Growth-Oriented</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="insight-box">
+                    <strong>Academic Insight:</strong> Both student groups prioritize growth-oriented happiness, with undergraduates showing slightly higher emotional intensity. This may reflect different life stages where younger students actively pursue new achievements and experiences.
+                </div>
+            </section>
+
+            <!-- PERMA FRAMEWORK SECTION -->
+            <section id="perma">
+                <h2>PERMA Well-being Framework</h2>
+                <p>Using Seligman's PERMA model (Positive Emotion, Engagement, Relationships, Meaning, Accomplishment), we mapped happiness sources to well-being components:</p>
+
+                <div class="ranked-list">
+                    <div class="ranked-item">
+                        <div class="rank-number">1</div>
+                        <div class="rank-content">
+                            <h4>Accomplishment</h4>
+                            <p>122 responses (38.4%) - Goal achievement, personal development, and mastery are the primary drivers of reported happiness.</p>
+                        </div>
+                    </div>
+                    <div class="ranked-item">
+                        <div class="rank-number">2</div>
+                        <div class="rank-content">
+                            <h4>Relationships</h4>
+                            <p>103 responses (32.4%) - Deep social connections, affection, and bonding create profound well-being experiences.</p>
+                        </div>
+                    </div>
+                    <div class="ranked-item medium">
+                        <div class="rank-number">3</div>
+                        <div class="rank-content">
+                            <h4>Meaning</h4>
+                            <p>47 responses (14.8%) - Purpose and connection to something larger than oneself contribute to happiness.</p>
+                        </div>
+                    </div>
+                    <div class="ranked-item low">
+                        <div class="rank-number">4</div>
+                        <div class="rank-content">
+                            <h4>Engagement & Positive Emotion</h4>
+                            <p>46 responses (14.5%) - Flow states and enjoyable moments are less explicitly cited as primary happiness sources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-findings">
+                    <h4>PERMA Distribution</h4>
+                    
+                    <!-- SVG Chart: PERMA Components Distribution -->
+                    <div style="display: flex; justify-content: center; margin: 40px 0;">
+                        <svg viewBox="0 0 1000 550" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; background: #f8f9fa; padding: 30px;">
+                            <!-- Title -->
+                            <text x="500" y="40" font-size="22" font-weight="bold" text-anchor="middle" fill="#667eea">PERMA Well-being Components Distribution</text>
+                            
+                            <!-- Y-Axis -->
+                            <line x1="100" y1="70" x2="100" y2="420" stroke="#ccc" stroke-width="2"/>
+                            <!-- X-Axis -->
+                            <line x1="100" y1="420" x2="950" y2="420" stroke="#ccc" stroke-width="2"/>
+                            
+                            <!-- Y-Axis Labels -->
+                            <text x="90" y="430" font-size="12" text-anchor="end" fill="#666">0</text>
+                            <text x="90" y="333" font-size="12" text-anchor="end" fill="#666">50</text>
+                            <text x="90" y="237" font-size="12" text-anchor="end" fill="#666">100</text>
+                            <text x="90" y="141" font-size="12" text-anchor="end" fill="#666">150</text>
+                            
+                            <!-- Grid Lines -->
+                            <line x1="100" y1="327" x2="950" y2="327" stroke="#eee" stroke-width="1"/>
+                            <line x1="100" y1="231" x2="950" y2="231" stroke="#eee" stroke-width="1"/>
+                            <line x1="100" y1="135" x2="950" y2="135" stroke="#eee" stroke-width="1"/>
+                            
+                            <!-- Positive Emotion (23) - P -->
+                            <rect x="130" y="362" width="130" height="58" fill="#e74c3c" opacity="0.85" rx="8"/>
+                            <text x="195" y="480" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Pos. Emotion</text>
+                            <text x="195" y="345" font-size="18" font-weight="bold" text-anchor="middle" fill="#e74c3c">23</text>
+                            <text x="195" y="395" font-size="16" font-weight="bold" text-anchor="middle" fill="white">7.2%</text>
+                            
+                            <!-- Engagement (23) - E -->
+                            <rect x="300" y="362" width="130" height="58" fill="#3498db" opacity="0.85" rx="8"/>
+                            <text x="365" y="480" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Engagement</text>
+                            <text x="365" y="345" font-size="18" font-weight="bold" text-anchor="middle" fill="#3498db">23</text>
+                            <text x="365" y="395" font-size="16" font-weight="bold" text-anchor="middle" fill="white">7.2%</text>
+                            
+                            <!-- Relationships (103) - R -->
+                            <rect x="470" y="142" width="130" height="278" fill="#764ba2" opacity="0.85" rx="8"/>
+                            <text x="535" y="480" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Relationships</text>
+                            <text x="535" y="117" font-size="18" font-weight="bold" text-anchor="middle" fill="#764ba2">103</text>
+                            <text x="535" y="290" font-size="16" font-weight="bold" text-anchor="middle" fill="white">32.4%</text>
+                            
+                            <!-- Meaning (47) - M -->
+                            <rect x="640" y="300" width="130" height="120" fill="#f39c12" opacity="0.85" rx="8"/>
+                            <text x="705" y="480" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Meaning</text>
+                            <text x="705" y="280" font-size="18" font-weight="bold" text-anchor="middle" fill="#f39c12">47</text>
+                            <text x="705" y="360" font-size="16" font-weight="bold" text-anchor="middle" fill="white">14.8%</text>
+                            
+                            <!-- Accomplishment (122) - A -->
+                            <rect x="810" y="90" width="130" height="330" fill="#667eea" opacity="0.85" rx="8"/>
+                            <text x="875" y="480" font-size="14" text-anchor="middle" fill="#2c3e50" font-weight="700">Accomplishment</text>
+                            <text x="875" y="65" font-size="18" font-weight="bold" text-anchor="middle" fill="#667eea">122</text>
+                            <text x="875" y="260" font-size="16" font-weight="bold" text-anchor="middle" fill="white">38.4%</text>
+                            
+                            <!-- Axis Labels -->
+                            <text x="525" y="530" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600">PERMA Component</text>
+                            <text x="40" y="245" font-size="13" text-anchor="middle" fill="#666" font-style="italic" font-weight="600" transform="rotate(-90 40 245)">Number of Responses</text>
+                        </svg>
+                    </div>
+                        <text x="20" y="185" font-size="11" text-anchor="middle" fill="#666" font-style="italic" transform="rotate(-90 20 185)">Count</text>
+                    </svg>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PERMA Component</th>
+                                <th>Count</th>
+                                <th>Percentage</th>
+                                <th>Associated Factors</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Accomplishment</strong></td>
+                                <td>122</td>
+                                <td>38.4%</td>
+                                <td>Achievement, Personal Growth</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Relationships</strong></td>
+                                <td>103</td>
+                                <td>32.4%</td>
+                                <td>Affection, Bonding</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Meaning</strong></td>
+                                <td>47</td>
+                                <td>14.8%</td>
+                                <td>Nature Connection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engagement</strong></td>
+                                <td>23</td>
+                                <td>7.2%</td>
+                                <td>Exercise, Flow</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Positive Emotion</strong></td>
+                                <td>23</td>
+                                <td>7.2%</td>
+                                <td>Leisure, Enjoying the Moment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Well-being Pattern:</strong> The respondents show a clear emphasis on concrete accomplishments and meaningful relationships. While positive emotions and engagement are important, they may be viewed as foundational states underlying the more explicitly recognized drivers of happiness.
+                </div>
+            </section>
+
+            <!-- PERSONAS SECTION -->
+            <section id="personas">
+                <h2>Identified Happiness Personas</h2>
+                <p>Based on comprehensive data analysis, we identified three distinct personas representing primary happiness profiles within the survey population:</p>
+
+                <div class="persona-grid">
+                    <!-- Persona 1: The Achiever -->
+                    <div class="persona-card">
+                        <div class="persona-header">
+                            <h3>The Driven Achiever</h3>
+                        </div>
+                        <div class="persona-body">
+                            <div class="persona-trait">
+                                <div class="trait-label">Core Focus</div>
+                                <div class="trait-value">Personal growth, self-development, and tangible achievements</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Key Traits</div>
+                                <div class="trait-value">Goal-oriented, self-improving, resilient, results-focused, proactive, hardworking</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Happiness Source</div>
+                                <div class="trait-value">Growth / Self-Development (144 responses, 45.3%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">PERMA Component</div>
+                                <div class="trait-value">Accomplishment (122 responses, 38.4%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Emotional Intensity</div>
+                                <div class="trait-value"><span class="badge high">High (3.0)</span> Profound, impactful emotions</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Prevalence</div>
+                                <div class="trait-value"><strong>45.3% of respondents</strong> - Most prevalent profile</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Persona 2: The Connector -->
+                    <div class="persona-card">
+                        <div class="persona-header">
+                            <h3>The Empathetic Connector</h3>
+                        </div>
+                        <div class="persona-body">
+                            <div class="persona-trait">
+                                <div class="trait-label">Core Focus</div>
+                                <div class="trait-value">Deep social connections, affection, and bonding with others</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Key Traits</div>
+                                <div class="trait-value">Empathetic, compassionate, nurturing, excellent communicator, values harmony</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Happiness Source</div>
+                                <div class="trait-value">Relational / Social (103 responses, 32.4%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">PERMA Component</div>
+                                <div class="trait-value">Relationships (103 responses, 32.4%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Emotional Intensity</div>
+                                <div class="trait-value"><span class="badge high">High (3.0)</span> Deep, resonant emotions</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Prevalence</div>
+                                <div class="trait-value"><strong>32.4% of respondents</strong> - Second most prevalent</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Persona 3: The Contemplator -->
+                    <div class="persona-card">
+                        <div class="persona-header">
+                            <h3>The Serene Contemplator</h3>
+                        </div>
+                        <div class="persona-body">
+                            <div class="persona-trait">
+                                <div class="trait-label">Core Focus</div>
+                                <div class="trait-value">Peace, tranquility, and connection with nature and self</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Key Traits</div>
+                                <div class="trait-value">Calm, reflective, introspective, appreciative, values serenity over excitement</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Happiness Source</div>
+                                <div class="trait-value">Calm / Presence / Restoration (69 responses, 21.7%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">PERMA Component</div>
+                                <div class="trait-value">Meaning (47 responses, 14.8%) & Positive Emotion (23 responses, 7.2%)</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Emotional Intensity</div>
+                                <div class="trait-value"><span class="badge low">Low (1.0)</span> Peaceful contentment</div>
+                            </div>
+                            <div class="persona-trait">
+                                <div class="trait-label">Prevalence</div>
+                                <div class="trait-value"><strong>21.7% of respondents</strong> - Smallest but significant</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INSIGHTS & RECOMMENDATIONS SECTION -->
+            <section id="insights">
+                <h2>Key Insights & Recommendations</h2>
+
+                <h3>Major Findings</h3>
+                <div class="subsection">
+                    <h3>1. Achievement-Driven Culture</h3>
+                    <p>With 45.3% of responses centered on Growth/Self-Development and 38.4% mapped to Accomplishment, respondents clearly prioritize personal achievement and development. This is the strongest predictor of reported happiness.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>2. High-Intensity Emotion Preference</h3>
+                    <p>70.8% of happiness experiences are categorized as high-intensity, indicating that respondents find their most profound fulfillment in impactful, engaging activities. Calm experiences, while valuable, are secondary.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>3. Social Connection Matters</h3>
+                    <p>Relationships account for 32.4% of happiness sources, demonstrating that strong social bonds are nearly as important as personal achievement. Bonding experiences rank second among all sources.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>4. Gender Differences in Approach</h3>
+                    <p>While both genders prioritize growth and relationships, males show proportionally higher preference for achievement-oriented happiness (48.3% vs 37.5%), while females show greater appreciation for calm and relational experiences.</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>5. Calm as a Secondary Well-being Source</h3>
+                    <p>Despite being less frequently cited (21.7%), calm and restorative experiences provide essential low-intensity well-being, suggesting a need for balanced happiness portfolios that include both achievement and restoration.</p>
+                </div>
+
+                <h3>Practical Recommendations</h3>
+                <div class="key-findings">
+                    <h4>For Well-being Programs</h4>
+                    <ul>
+                        <li><strong>Prioritize Achievement Pathways:</strong> Design programs that help individuals set and achieve meaningful goals, as this is the primary driver of reported happiness.</li>
+                        <li><strong>Foster Community & Connection:</strong> Create opportunities for meaningful social bonding and relationships, which are nearly equivalent in importance to achievement.</li>
+                        <li><strong>Balance with Restoration:</strong> While high-intensity experiences dominate, include restorative practices for sustainable well-being. Don't neglect the 22% of respondents who find happiness in calm experiences.</li>
+                        <li><strong>Gender-Sensitive Approaches:</strong> Tailor interventions recognizing that males may respond better to achievement-focused programs while females may value relational and calm components more.</li>
+                        <li><strong>Multi-Component Strategy:</strong> Integrate PERMA components holistically, not just Accomplishment and Relationships, to support diverse well-being needs.</li>
+                    </ul>
+                </div>
+
+                <h3>Population Insights</h3>
+                <ul>
+                    <li><strong>Student-Centric Sample:</strong> The survey reflects student experiences, with undergraduates showing slightly higher emotional intensity (2.498 vs 2.443). Programs should address life-stage-specific happiness drivers.</li>
+                    <li><strong>Gender Representation:</strong> The 74% male to 26% female ratio suggests potential response bias. Future research should pursue balanced representation.</li>
+                    <li><strong>Engagement Opportunity:</strong> Only 7.2% of respondents cite engagement and positive emotion as primary sources, suggesting these might be foundational states or undervalued well-being components.</li>
+                </ul>
+
+                <h3>Future Research Directions</h3>
+                <ul>
+                    <li>Conduct qualitative interviews to understand why certain PERMA components (like Engagement) are underrepresented</li>
+                    <li>Investigate longitudinal changes in happiness sources across life stages</li>
+                    <li>Explore contextual factors surrounding high-intensity happiness experiences</li>
+                    <li>Develop targeted interventions based on identified personas</li>
+                    <li>Examine cultural and socioeconomic variations in happiness sources</li>
+                </ul>
+            </section>
+
+            <!-- CONCLUSION & STRATEGIC IMPLICATIONS SECTION -->
+            <section>
+                <h2>Conclusion & Strategic Implications</h2>
+
+                <div class="subsection" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%); margin-bottom: 30px;">
+                    <h3>Executive Summary</h3>
+                    <p>
+                        This comprehensive analysis of happiness sources reveals a population fundamentally driven by achievement and connection. With <strong>45.3% of respondents citing Growth/Self-Development and 32.4% citing Relational/Social</strong> experiences as their primary sources of happiness, the data paints a clear picture: people thrive when they accomplish meaningful goals and nurture strong relationships.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        The overwhelming prevalence of <strong>high-intensity emotional experiences (70.8%)</strong> demonstrates that respondents do not find happiness in passive contentment or modest pleasures. Instead, they seek profound, impactful moments—whether through personal achievement, social bonding, or meaningful engagement. This pattern transcends demographic boundaries, appearing consistently across genders and academic levels, suggesting a fundamental human orientation toward growth and connection.
+                    </p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Key Psychological Insights</h3>
+                    <p><strong>1. Achievement-Centric Well-being:</strong> The dominance of Accomplishment (38.4%) as a PERMA component indicates that tangible achievement and measurable progress are core to reported happiness. Respondents explicitly value goal-setting and goal-attainment as sources of fulfillment.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>2. Relational Primacy:</strong> Relationships (32.4%) demonstrate near-equivalence with Accomplishment, revealing that while individual achievement matters profoundly, it is nearly matched by the importance of social bonds. The data suggests happiness is not a solitary pursuit.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>3. Emotional Intensity Preference:</strong> The 70.8% concentration on high-intensity emotions reveals a population that prefers "peak experiences" over steady-state contentment. This suggests that well-being interventions should focus on creating meaningful, transformative experiences rather than merely reducing stress or discomfort.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>4. Calm as Secondary Sustenance:</strong> While only 21.7% cite calm experiences as primary happiness sources, the exclusive association of calm with low-intensity emotions suggests it serves as essential recovery infrastructure. Respondents may underreport calm activities because they don't produce the memorable "high-intensity" moments they associate with happiness.</p>
+                    
+                    <p style="margin-top: 12px;"><strong>5. Gender Variance with Convergence:</strong> While males show 48.3% growth-orientation versus females' 37.5%, both genders prioritize growth over other sources. The difference reflects nuance rather than fundamental divergence—suggesting that targeted wellness programs can address gender-specific emphases while maintaining core achievement and relational infrastructure.</p>
+                </div>
+
+                <div class="key-findings" style="background: linear-gradient(135deg, #e8f5f7 0%, #e0f7fa 100%); border-left-color: #3498db;">
+                    <h4 style="color: #2980b9;">Implications for Well-being Programs</h4>
+                    <ul>
+                        <li><strong>Design for Achievement:</strong> Educational and corporate well-being programs should prioritize pathways for meaningful goal-setting, skill development, and progress tracking. Make accomplishment visible and celebrated.</li>
+                        <li><strong>Build Community Infrastructure:</strong> Create structured opportunities for genuine connection and bonding. The 32.4% relational focus suggests that community-building is not a "nice-to-have" but a core well-being pillar.</li>
+                        <li><strong>Create Peak Experiences:</strong> The high-intensity preference indicates that one transformative achievement or meaningful social experience may generate more reported happiness than weeks of moderate pleasant experiences. Programs should balance steady support with high-impact opportunities.</li>
+                        <li><strong>Integrate Restoration Practices:</strong> While underreported, calm and restorative experiences (21.7%) are essential for sustainable well-being. Include nature exposure, mindfulness, and leisure as foundational supports—not primary programming.</li>
+                        <li><strong>Gender-Sensitive Targeting:</strong> While both genders value growth and relationships, males respond more to achievement-oriented framing while females show greater appreciation for relational and restorative components. Customize marketing and emphasis accordingly.</li>
+                    </ul>
+                </div>
+
+                <div class="key-findings" style="background: linear-gradient(135deg, #f9f5e8 0%, #fff3e0 100%); border-left-color: #f39c12;">
+                    <h4 style="color: #d68910;">Demographic Considerations</h4>
+                    <ul>
+                        <li><strong>Sample Composition:</strong> The 74% male, 26% female distribution reflects male-dominant educational demographics or survey response patterns. While proportional analysis accounts for this, future research should pursue balanced representation for direct comparative insights.</li>
+                        <li><strong>Academic Stage Differences:</strong> Undergraduate (2.498 avg confidence) and postgraduate (2.443 avg confidence) respondents show minimal difference in emotion intensity, suggesting that happiness sources remain relatively stable across academic progression. Both groups strongly value achievement and connection.</li>
+                        <li><strong>Student Population Context:</strong> This population is predominantly students navigating structured academic environments. Findings may differ in post-academic contexts where self-directed goal-setting, career achievement, and family relationships take on different forms and weightings.</li>
+                    </ul>
+                </div>
+
+                <div class="key-findings" style="background: linear-gradient(135deg, #f0fce8 0%, #e8f5e9 100%); border-left-color: #27ae60;">
+                    <h4 style="color: #229954;">Engagement & Positive Emotion Gap</h4>
+                    <p style="margin: 0;">Only <strong>7.2% each</strong> reported Engagement (exercise, flow states) and Positive Emotion (leisure, enjoyment) as primary happiness sources. This underreporting likely reflects the measurement approach: these may be <strong>foundational states</strong> supporting achievement and relationships rather than distinct drivers. Alternatively, respondents may reserve explicit "happiness" attribution for high-impact moments, overlooking the cumulative value of engaged activities and positive everyday moments.</p>
+                    <p style="margin-top: 12px;"><strong>Recommendation:</strong> Future research should distinguish between explicit happiness sources and enabling well-being components, capturing the full spectrum of psychological flourishing.</p>
+                </div>
+
+                <div class="subsection" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%); margin-top: 40px;">
+                    <h3>Final Conclusion</h3>
+                    <p>
+                        What makes people happy, according to this data, is profoundly human: <strong>achieving meaningful goals and experiencing genuine connection with others.</strong> The 45.3% who cite growth, combined with 32.4% who prioritize relationships, reveal a population seeking what psychologists identify as self-actualization and belonging—the upper tiers of human motivation. The 70.8% concentration of high-intensity experiences underscores that happiness isn't about comfort, but about mattering: achieving something difficult, connecting meaningfully, and growing as a person.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        For organizations, educators, and policymakers, the implications are clear: <strong>invest in systems that facilitate achievement and foster community.</strong> Create environments where individuals can pursue growth, gain recognition for accomplishment, and build genuine relationships. While calm and leisure have their place (as sustainable well-being foundations), the primary lever for happiness lies in enabling people to achieve meaningful goals and connect authentically with others.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        The three identified personas—The Driven Achiever (45.3%), The Empathetic Connector (32.4%), and The Serene Contemplator (21.7%)—demonstrate that while people prioritize differently, virtually all respondents recognize that happiness requires some combination of personal growth, relational depth, and occasional restoration. A sustainable well-being culture honors all three dimensions while recognizing that achievement and connection form the foundation upon which restorative moments provide essential recovery.
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <em>The path to well-being—individual and collective—runs through achievement and connection. Everything else is the structure that allows those core human drives to flourish.</em>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <p><strong>What Makes You Happy? Survey Analysis Report</strong></p>
+            <p>A comprehensive research study examining happiness sources, well-being drivers, and emotional patterns across diverse populations</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.8;">© 2025 Happiness & Well-being Research Project | Data analyzed using Python, Pandas, and psychological frameworks</p>
+        </footer>
+    </div>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" title="Go to top">↑</button>
+
+    <script>
+        // ========================================
+        // Scroll to Top Functionality
+        // ========================================
+        window.addEventListener('scroll', function() {
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // ========================================
+        // Smooth Scroll for Navigation Links
+        // ========================================
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Smooth scroll to target
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // ========================================
+        // Update Active Navigation on Scroll
+        // ========================================
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.clientHeight;
+                
+                if (window.pageYOffset >= top - 100) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    const activeLink = document.querySelector(`nav a[href="#${section.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // ========================================
+        // Interactive H2 Headers - Section Highlighting
+        // ========================================
+        document.querySelectorAll('h2').forEach(h2 => {
+            h2.style.cursor = 'pointer';
+            h2.addEventListener('click', function() {
+                const section = this.closest('section');
+                section.classList.add('highlight');
+                setTimeout(() => {
+                    section.classList.remove('highlight');
+                }, 1500);
+            });
+        });
+
+        // ========================================
+        // Keyboard Navigation
+        // ========================================
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowUp' && event.ctrlKey) {
+                scrollToTop();
+            }
+        });
+    </script>
+</body>
+</html>
